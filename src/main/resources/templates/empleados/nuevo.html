@@ -1,0 +1,95 @@
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<th:block th:include="fragments/resources"></th:block>
+</head>
+
+<body data-ma-theme="blue">
+	<th:block th:insert="fragments/header"></th:block>
+	<th:block th:insert="fragments/menu"></th:block>
+	<section class="content">
+
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Nuevo empleado</h4>
+
+				<form th:action="@{/empleados/crear}" th:method="post">
+
+					<div class="form-row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" th:field="${empleado.nombres}"
+									class="form-control" placeholder="Nombres" maxlength="50" /> <i
+									class="form-group__bar"></i>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" th:field="${empleado.apellidos}"
+									class="form-control" placeholder="Apellidos" maxlength="50" />
+								<i class="form-group__bar"></i>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" th:field="${empleado.documento}"
+									class="form-control" placeholder="Documento" maxlength="10" />
+								<i class="form-group__bar"></i>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" th:field="*{empleado.fechaNacimiento}"
+									class="validate[required] form-control date-picker hidden-sm-down"
+									placeholder="Fecha de Nacimiento" data-language='es'>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" th:field="${empleado.numeroHijos}"
+									class="form-control" placeholder="Número de hijos"
+									maxlength="50" /> <i class="form-group__bar"></i>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" th:field="${empleado.sueldo}"
+									class="form-control" placeholder="Sueldo" maxlength="50" /> <i
+									class="form-group__bar"></i>
+							</div>
+						</div>
+						<div class="col-md-6 col-md-offset-6">
+							<div class="form-group">
+								<select th:field="*{empleado.tipoEmpleado.idTipoEmpleado}"
+									class="form-control">
+									<option value="-1">Seleccione</option>
+									<option th:each="tipo : ${listaTipos}"
+										th:value="${tipo.idTipoEmpleado}"
+										th:text="${tipo.descripcion}" />
+								</select>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">Registrar</button>
+								<a class="btn btn-danger" th:href="@{'/empleados'}">Cancelar</a>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+				</form>
+
+
+			</div>
+		</div>
+
+
+	</section>
+</body>
+</html>
